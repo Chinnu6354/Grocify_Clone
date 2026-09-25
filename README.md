@@ -1,99 +1,96 @@
-#  Grocify Website - Grocery Homepage
+# 🛒 Grocify – Full Stack Grocery Shopping Application
 
-A responsive grocery website homepage built using **React.js, Vite, Tailwind CSS, Framer Motion, and Lucide React**.
+Grocify is a full-stack grocery shopping web application built with **React.js** on the frontend and **Spring Boot** on the backend.
 
-This project was developed as part of a React.js assignment to demonstrate responsive UI development, reusable components, animations, dark/light theme switching, search functionality, and smooth navigation.
+The application allows users to browse grocery products, manage their cart and wishlist, place orders, and manage their account. It also includes authentication, OTP verification, password recovery, product management, and image storage using Cloudinary.
 
-## Project Overview
+---
 
-**Grocify Website** is a modern and responsive grocery shopping homepage.
-The website provides a clean grocery-themed interface where users can:
+## 🚀 Features
 
-- Browse the homepage
-- Navigate between different sections
-- Search for products
-- Switch between light and dark mode
-- View grocery-related information
-- Explore the ordering process
-- Contact the website through a contact form
-- Use the responsive mobile navigation
+### 👤 Authentication
 
-The design uses an orange and white color theme inspired by fresh fruits and vegetables.
+- User Signup
+- OTP verification
+- User Login
+- JWT-based authentication
+- Forgot Password
+- Forgot Password OTP verification
+- Password Reset
+- Protected routes
 
+### 🛍️ Products
 
-#  Technologies Used
+- View grocery products
+- Product details
+- Product categories
+- Product images
+- Admin product management
+- Add products
+- Update products
+- Delete products
 
-The following technologies and libraries were used in this project:
+### 🛒 Shopping Cart
 
-### Frontend
+- Add products to cart
+- Update product quantity
+- Remove products from cart
+- View cart total
+- Cart persistence
 
-- React.js
-- Vite
-- JavaScript (JSX)
-- HTML5
-- CSS3
+### ❤️ Wishlist
 
-### Styling
+- Add products to wishlist
+- Remove products from wishlist
+- View wishlist
+- Move products between wishlist and cart
 
-- Tailwind CSS
+### 📦 Orders
 
-### UI Icons
+- Checkout
+- Place orders
+- View previous orders
+- Order details
+- Order item management
 
-- Lucide React
+### 📧 Email & OTP
 
-### Animations
+- Email-based OTP verification
+- Password reset through OTP
+- Gmail SMTP integration
 
-- Framer Motion
-- CSS Keyframe Animation
+### 🖼️ Image Management
 
-### Development Tools
+- Product image upload
+- Cloudinary integration
+- Cloud-hosted product images
 
-- Visual Studio Code
-- npm
-- Git / GitHub
+### 📱 Responsive UI
 
+- Desktop responsive design
+- Tablet responsive design
+- Mobile responsive design
+- Responsive navigation bar
 
-# Features
+---
 
-## 1. Responsive Navbar
+## 🏗️ Project Architecture
 
-The website includes a responsive navigation bar containing:
-
-- Grocify Website logo
-- Home
-- About Us
-- Process
-- Contact Us
-- Search box
-- Wishlist icon
-- Dark/Light mode toggle
-- Shopping cart icon
-The navbar is sticky and remains visible while scrolling.
-
-
-## 2. Responsive Mobile Navigation
-
-On smaller screens, the desktop navigation is replaced with a hamburger menu.
-The mobile menu contains:
-
-- Search box
-- Home
-- About Us
-- Process
-- Contact Us
-The menu can be opened and closed using the hamburger button.
-
-## 3. Search Functionality
-
-The navbar contains a search input.
-Users can enter a search term and click the search icon.
-The entered search text is displayed in the browser console using:
-
- ## How to Run the project 
-
- 1. Open the Project in Visual Studio Code and open the terminal    inside vs code.
- 2. Install Dependencies : npm install
- 3. Start the Development Server : npm run dev
- 4. The terminal will display a local URL similar to : http://localhost:5173/
- 5. Build Production Version - npm run build
- 6. Preview Production Build - npm run preview
+```text
+                    ┌─────────────────────┐
+                    │      React.js       │
+                    │     Frontend        │
+                    └──────────┬──────────┘
+                               │
+                               │ REST API
+                               ▼
+                    ┌─────────────────────┐
+                    │     Spring Boot     │
+                    │       Backend       │
+                    └──────────┬──────────┘
+                               │
+              ┌────────────────┼────────────────┐
+              │                │                │
+              ▼                ▼                ▼
+           MySQL          Cloudinary         Gmail
+         Database        Image Storage       SMTP
