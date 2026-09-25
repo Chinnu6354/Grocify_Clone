@@ -1,12 +1,31 @@
+
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Leaf, Truck, ShieldCheck, ArrowUp } from "lucide-react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Products from "./components/Products.jsx";
 
-function App() {
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Admin from "./pages/Admin";
+import Cart from "./pages/Cart";
+import MyOrders from "./pages/MyOrders";
+import Checkout from "./pages/Checkout";
+import Wishlist from "./pages/Wishlist";
+import Contact from "./pages/Contact";
+import ForgotPassword from "./pages/ForgotPassword";
+import ForgotPasswordVerify from "./pages/ForgotPasswordVerify";
+import ForgotPasswordReset from "./pages/ForgotPasswordReset";
+
+function Home() {
+  const navigate = useNavigate();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showProducts, setShowProducts] = useState(false);
+  
 
         useEffect(() => {
           const handleScroll = () => {
@@ -35,11 +54,50 @@ function App() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}>
       <Navbar
-        isDarkMode={isDarkMode}
-        setIsDarkMode={setIsDarkMode}/>
-      <Hero isDarkMode={isDarkMode} />
-      
+  isDarkMode={isDarkMode}
+  setIsDarkMode={setIsDarkMode}
+  onProductsClick={() => {
+    const token = localStorage.getItem("token");
 
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    setShowProducts(true);
+
+    setTimeout(() => {
+      document
+        .getElementById("products-section")
+        ?.scrollIntoView({
+          behavior: "smooth",
+        });
+    }, 100);
+  }}
+/>
+      <Hero
+  isDarkMode={isDarkMode}
+  onShopNow={() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+  navigate("/login");
+  return;
+}
+    setShowProducts(true);
+
+    setTimeout(() => {
+      document.getElementById("products-section")?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 100);
+  }}
+/>
+{showProducts && (
+  <div id="products-section">
+    <Products />
+  </div>
+)}  
         <section
           id="about"
           className={`px-6 py-20 transition-colors duration-300 ${
@@ -230,131 +288,7 @@ function App() {
           </div>
         </section>
 
-        <section
-          id="contact"
-          className={`px-6 py-20 transition-colors duration-300 ${
-            isDarkMode ? "bg-gray-800" : "bg-orange-50"
-          }`}>
-          <div className="mx-auto max-w-7xl">
-
-            <div className="text-center">
-              <h2 className="text-3xl font-bold text-orange-500 sm:text-4xl">
-                Contact Us
-              </h2>
-
-              <p
-                className={`mx-auto mt-4 max-w-2xl ${
-                  isDarkMode ? "text-gray-300" : "text-gray-600"
-                }`}>
-                Have questions or need help? We'd love to hear from you.
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-10 md:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}>
-                <h3 className="text-2xl font-semibold">
-                  Get In Touch
-                </h3>
-
-                <p
-                  className={`mt-4 leading-7 ${
-                    isDarkMode ? "text-gray-300" : "text-gray-600"
-                  }`}>
-                  Our team is here to help you with your grocery
-                  shopping experience.
-                </p>
-
-                <div className="mt-8 space-y-5">
-
-                  <div>
-                    <p className="font-semibold text-orange-500">
-                      Email
-                    </p>
-                    <p
-                      className={
-                        isDarkMode ? "text-gray-300" : "text-gray-600"
-                      }>
-                      support@grocify.com
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="font-semibold text-orange-500">
-                      Phone
-                    </p>
-                    <p
-                      className={
-                        isDarkMode ? "text-gray-300" : "text-gray-600"
-                      }>
-                      +91 63547 97144
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="font-semibold text-orange-500">
-                      Location
-                    </p>
-                    <p
-                      className={
-                        isDarkMode ? "text-gray-300" : "text-gray-600"
-                      }>
-                      Bengaluru, India
-                    </p>
-                  </div>
-
-                </div>
-              </motion.div>
-            
-        <motion.div
-          className={`rounded-2xl p-6 shadow-lg ${
-            isDarkMode ? "bg-gray-900" : "bg-white"
-          }`}
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.15 }}>
-                <div className="space-y-5">
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    className={`w-full rounded-lg border px-4 py-3 outline-none transition focus:border-orange-500 ${
-                      isDarkMode
-                        ? "border-gray-700 bg-gray-800 text-white placeholder:text-gray-400"
-                        : "border-gray-200 bg-gray-50 text-gray-900"
-                    }`} />
-                  <input
-                    type="email"
-                    placeholder="Your Email"
-                    className={`w-full rounded-lg border px-4 py-3 outline-none transition focus:border-orange-500 ${
-                      isDarkMode
-                        ? "border-gray-700 bg-gray-800 text-white placeholder:text-gray-400"
-                        : "border-gray-200 bg-gray-50 text-gray-900"
-                    }`} />
-
-                  <textarea
-                    rows="4"
-                    placeholder="Your Message"
-                    className={`w-full resize-none rounded-lg border px-4 py-3 outline-none transition focus:border-orange-500 ${
-                      isDarkMode
-                        ? "border-gray-700 bg-gray-800 text-white placeholder:text-gray-400"
-                        : "border-gray-200 bg-gray-50 text-gray-900"
-                    }`}
-                  ></textarea>
-                  <button
-                    type="button"
-                    className="w-full rounded-lg bg-gradient-to-r from-orange-500 to-orange-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-                    Send Message
-                  </button>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
+       <Contact isDarkMode={isDarkMode} />
 
 
       <footer
@@ -380,6 +314,27 @@ function App() {
           </button>
         )}
     </motion.div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />}/>
+        <Route path="/forgot-password/verify"element={<ForgotPasswordVerify />} />
+        <Route path="/forgot-password/reset"element={<ForgotPasswordReset />} />
+        <Route path="/wishlist" element={<Wishlist />}/>
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/orders" element={<MyOrders />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import basketImage from "../assets/basket.png";
 
-function Hero({isDarkMode}) {
+function Hero({isDarkMode, onShopNow}) {
   return (
           <section
                 id="home"
@@ -47,13 +47,16 @@ function Hero({isDarkMode}) {
                       Fresh and healthy fruits and vegetables delivered
                       directly to your doorstep.
                 </motion.p>
-                <motion.button
-                  type="button"
-                  className="mt-8 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 px-7 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl active:scale-95"
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  whileTap={{ scale: 0.95 }}>
-                  Shop Now
-                </motion.button>
+               <motion.button
+  type="button"
+  onClick={() => {
+    console.log("SHOP NOW CLICKED");
+    onShopNow();
+  }}
+  className="mt-8 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 px-7 py-3 font-semibold text-white"
+>
+  Shop Now
+</motion.button>
             </motion.div>
             
               <motion.div
