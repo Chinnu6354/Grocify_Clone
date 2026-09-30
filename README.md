@@ -8,7 +8,7 @@ The application allows users to browse grocery products, manage their cart and w
 
 ---
 
-## 🚀 Features
+## 🚀 Features of project
 
 ### 👤 Authentication
 
