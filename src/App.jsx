@@ -19,6 +19,7 @@ import Contact from "./pages/Contact";
 import ForgotPassword from "./pages/ForgotPassword";
 import ForgotPasswordVerify from "./pages/ForgotPasswordVerify";
 import ForgotPasswordReset from "./pages/ForgotPasswordReset";
+import AiAssistant from "./components/AiAssistant";
 
 function Home() {
   const navigate = useNavigate();
@@ -98,6 +99,8 @@ function Home() {
     <Products />
   </div>
 )}  
+
+
         <section
           id="about"
           className={`px-6 py-20 transition-colors duration-300 ${
@@ -334,6 +337,7 @@ function App() {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
+      <AiAssistant />
     </BrowserRouter>
   );
 }
